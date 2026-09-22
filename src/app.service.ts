@@ -1,32 +1,15 @@
-@'
-import { Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
-import { PrismaMariaDb } from '@prisma/adapter-mariadb';
-import { PrismaClient } from '../../generated/prisma/client.js';
+import { Injectable } from '@nestjs/common';
+import { PrismaService } from './database/prisma/prisma.service.js';
 
 @Injectable()
-export class PrismaService
-  extends PrismaClient
-  implements OnModuleInit, OnModuleDestroy
-{
-  constructor() {
-    const adapter = new PrismaMariaDb({
-      host: process.env.DB_HOST ?? 'localhost',
-      port: Number(process.env.DB_PORT ?? 3306),
-      user: process.env.DB_USER ?? 'root',
-      password: process.env.DB_PASSWORD ?? '',
-      database: process.env.DB_NAME ?? 'rentwise',
-      connectionLimit: 5,
-    });
+export class AppService {
+  constructor(private readonly prisma: PrismaService) {}
 
-    super({ adapter });
-  }
+  async getHello(): Promise<string> {
+    const userCount = await (this.prisma as PrismaService & {
+      user: { count: () => Promise<number> };
+    }).user.count();
 
-  async onModuleInit(): Promise<void> {
-    await this.$connect();
-  }
-
-  async onModuleDestroy(): Promise<void> {
-    await this.$disconnect();
+    return `RentWise API is running. Users: ${userCount}`;
   }
 }
-'@ | Set-Content .\src\database\prisma\prisma.service.ts

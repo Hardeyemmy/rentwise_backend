@@ -6,9 +6,7 @@ export class AppService {
   constructor(private readonly prisma: PrismaService) {}
 
   async getHello(): Promise<string> {
-    const userCount = await (this.prisma as PrismaService & {
-      user: { count: () => Promise<number> };
-    }).user.count();
+    const userCount = await this.prisma.user.count();
 
     return `RentWise API is running. Users: ${userCount}`;
   }

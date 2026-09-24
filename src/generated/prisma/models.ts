@@ -8,4 +8,14 @@
  *
  * 🟢 You can import this file directly.
  */
+export type * from './models/User.js'
+export type * from './models/Property.js'
+export type * from './models/PropertyImage.js'
+export type * from './models/Amenity.js'
+export type * from './models/PropertyAmenity.js'
+export type * from './models/Favorite.js'
+export type * from './models/RentalApplication.js'
+export type * from './models/Viewing.js'
+export type * from './models/Payment.js'
+export type * from './models/Notification.js'
 export type * from './commonInputTypes.js'

@@ -9,7 +9,92 @@
 * 🟢 You can import this file directly.
 */
 
+export const UserRole = {
+  TENANT: 'TENANT',
+  LANDLORD: 'LANDLORD',
+  AGENT: 'AGENT',
+  ADMIN: 'ADMIN'
+} as const
+
+export type UserRole = (typeof UserRole)[keyof typeof UserRole]
 
 
-// This file is empty because there are no enums in the schema.
-export {}
+export const PropertyType = {
+  APARTMENT: 'APARTMENT',
+  HOUSE: 'HOUSE',
+  DUPLEX: 'DUPLEX',
+  STUDIO: 'STUDIO',
+  OFFICE: 'OFFICE'
+} as const
+
+export type PropertyType = (typeof PropertyType)[keyof typeof PropertyType]
+
+
+export const ListingType = {
+  RENT: 'RENT',
+  SALE: 'SALE'
+} as const
+
+export type ListingType = (typeof ListingType)[keyof typeof ListingType]
+
+
+export const PropertyStatus = {
+  AVAILABLE: 'AVAILABLE',
+  RENTED: 'RENTED',
+  SOLD: 'SOLD',
+  PENDING: 'PENDING'
+} as const
+
+export type PropertyStatus = (typeof PropertyStatus)[keyof typeof PropertyStatus]
+
+
+export const ApplicationStatus = {
+  PENDING: 'PENDING',
+  REVIEWING: 'REVIEWING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED',
+  WITHDRAWN: 'WITHDRAWN'
+} as const
+
+export type ApplicationStatus = (typeof ApplicationStatus)[keyof typeof ApplicationStatus]
+
+
+export const ViewingStatus = {
+  REQUESTED: 'REQUESTED',
+  CONFIRMED: 'CONFIRMED',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type ViewingStatus = (typeof ViewingStatus)[keyof typeof ViewingStatus]
+
+
+export const PaymentStatus = {
+  PENDING: 'PENDING',
+  SUCCESS: 'SUCCESS',
+  FAILED: 'FAILED',
+  REFUNDED: 'REFUNDED'
+} as const
+
+export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]
+
+
+export const PaymentType = {
+  APPLICATION: 'APPLICATION',
+  RENT: 'RENT',
+  DEPOSIT: 'DEPOSIT',
+  OTHER: 'OTHER'
+} as const
+
+export type PaymentType = (typeof PaymentType)[keyof typeof PaymentType]
+
+
+export const NotificationType = {
+  SYSTEM: 'SYSTEM',
+  APPLICATION: 'APPLICATION',
+  VIEWING: 'VIEWING',
+  PAYMENT: 'PAYMENT',
+  PROPERTY: 'PROPERTY'
+} as const
+
+export type NotificationType = (typeof NotificationType)[keyof typeof NotificationType]

@@ -1,4 +1,9 @@
-import { Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
+import {
+  Injectable,
+  OnModuleDestroy,
+  OnModuleInit,
+} from '@nestjs/common';
+
 import { PrismaMariaDb } from '@prisma/adapter-mariadb';
 import { PrismaClient } from '../../generated/prisma/client.js';
 
@@ -15,6 +20,7 @@ export class PrismaService
       password: process.env.DB_PASSWORD ?? '',
       database: process.env.DB_NAME ?? 'rentwise',
       connectionLimit: 5,
+      
     });
 
     super({ adapter });

@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
-import type { SignOptions } from 'jsonwebtoken';
+import { ConfigService } from '@nestjs/config';
 
 import { AuthController } from './auth.controller.js';
 import { AuthService } from './auth.service.js';
@@ -10,19 +9,14 @@ import { AuthService } from './auth.service.js';
   imports: [
     JwtModule.registerAsync({
       inject: [ConfigService],
-      useFactory: (configService: ConfigService) => {
-        const expiresIn =
-          configService.get<SignOptions['expiresIn']>(
-            'JWT_ACCESS_EXPIRES_IN',
-          ) ?? '15m';
-
-        return {
-          secret: configService.getOrThrow<string>('JWT_ACCESS_SECRET'),
-          signOptions: {
-            expiresIn,
-          },
-        };
-      },
+      useFactory: (configService: ConfigService) => ({
+        secret: configService.getOrThrow<string>(
+          'JWT_ACCESS_SECRET',
+        ),
+        signOptions: {
+          expiresIn: 900,
+        },
+      }),
     }),
   ],
   controllers: [AuthController],

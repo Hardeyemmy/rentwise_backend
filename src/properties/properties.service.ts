@@ -77,4 +77,12 @@ export class PropertiesService {
 
     return property;
   }
+
+  async findAll() {
+  return this.prisma.property.findMany({
+    orderBy: {
+      createdAt: 'desc',
+    },
+  });
+}
 }

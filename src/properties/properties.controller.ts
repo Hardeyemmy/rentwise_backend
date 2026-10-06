@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Post,
+  Get,
   Req,
   UseGuards,
 } from '@nestjs/common';
@@ -31,4 +32,9 @@ export class PropertiesController {
       dto,
     );
   }
+
+  @Get()
+findAll() {
+  return this.propertiesService.findAll();
+}
 }

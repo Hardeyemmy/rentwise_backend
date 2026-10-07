@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  ForbiddenException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -10,7 +11,7 @@ import {
   ListingType,
   PropertyType,
 } from './dto/create_properties.dto.js';
-
+import { UpdatePropertyDto } from './dto/update_property.dto.js';
 @Injectable()
 export class PropertiesService {
   constructor(
@@ -64,6 +65,105 @@ export class PropertiesService {
     return property;
   }
 
+  async update(
+  id: string,
+  userId: string,
+  dto: UpdatePropertyDto,
+) {
+  const property = await this.prisma.property.findUnique({
+    where: {
+      id,
+    },
+  });
+
+  if (!property) {
+    throw new NotFoundException('Property not found');
+  }
+
+  if (property.ownerId !== userId) {
+    throw new ForbiddenException(
+      'You do not have permission to update this property',
+    );
+  }
+
+  const updatedProperty =
+    await this.prisma.property.update({
+      where: {
+        id,
+      },
+      data: {
+        ...(dto.title !== undefined && {
+          title: dto.title.trim(),
+        }),
+
+        ...(dto.description !== undefined && {
+          description: dto.description.trim(),
+        }),
+
+        ...(dto.location !== undefined && {
+          location: dto.location.trim(),
+        }),
+
+        ...(dto.city !== undefined && {
+          city: dto.city.trim(),
+        }),
+
+        ...(dto.state !== undefined && {
+          state: dto.state.trim(),
+        }),
+
+        ...(dto.address !== undefined && {
+          address: dto.address.trim(),
+        }),
+
+        ...(dto.price !== undefined && {
+          price: dto.price,
+        }),
+
+        ...(dto.propertyType !== undefined && {
+          propertyType: dto.propertyType,
+        }),
+
+        ...(dto.listingType !== undefined && {
+          listingType: dto.listingType,
+        }),
+
+        ...(dto.bedrooms !== undefined && {
+          bedrooms: dto.bedrooms,
+        }),
+
+        ...(dto.bathrooms !== undefined && {
+          bathrooms: dto.bathrooms,
+        }),
+
+        ...(dto.area !== undefined && {
+          area: dto.area,
+        }),
+
+        ...(dto.yearBuilt !== undefined && {
+          yearBuilt: dto.yearBuilt,
+        }),
+
+        ...(dto.parkingSpaces !== undefined && {
+          parkingSpaces: dto.parkingSpaces,
+        }),
+
+        ...(dto.latitude !== undefined && {
+          latitude: dto.latitude,
+        }),
+
+        ...(dto.longitude !== undefined && {
+          longitude: dto.longitude,
+        }),
+
+        ...(dto.isFeatured !== undefined && {
+          isFeatured: dto.isFeatured,
+        }),
+      },
+    });
+
+  return updatedProperty;
+}
   async findOne(id: string) {
     const property = await this.prisma.property.findUnique({
       where: { id },
@@ -85,4 +185,6 @@ export class PropertiesService {
     },
   });
 }
+
+
 }

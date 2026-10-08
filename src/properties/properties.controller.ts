@@ -4,6 +4,7 @@ import {
   Post,
   Patch,
   Get,
+  Delete,
   Param,
   Req,
   UseGuards,
@@ -43,6 +44,19 @@ findAll() {
 @Get(':id')
 findOne(@Param('id') id: string) {
   return this.propertiesService.findOne(id);
+}
+
+@UseGuards(AuthGuard('jwt'), RolesGuard)
+@Roles('LANDLORD')
+@Delete(':id')
+remove(
+  @Param('id') id: string,
+  @Req() request: any,
+) {
+  return this.propertiesService.remove(
+    id,
+    request.user.id,
+  );
 }
 
 @UseGuards(AuthGuard('jwt'), RolesGuard)

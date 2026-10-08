@@ -164,27 +164,62 @@ export class PropertiesService {
 
   return updatedProperty;
 }
-  async findOne(id: string) {
-    const property = await this.prisma.property.findUnique({
-      where: { id },
-    });
 
-    if (!property) {
-      throw new NotFoundException(
-        'Property not found',
-      );
-    }
+async remove(id: string, userId: string) {
+  const property = await this.prisma.property.findUnique({
+    where: {
+      id,
+    },
+  });
 
-    return property;
+  if (!property || property.deletedAt !== null) {
+    throw new NotFoundException('Property not found');
   }
+
+  if (property.ownerId !== userId) {
+    throw new ForbiddenException(
+      'You do not have permission to delete this property',
+    );
+  }
+
+  return this.prisma.property.update({
+    where: {
+      id,
+    },
+    data: {
+      deletedAt: new Date(),
+    },
+    select: {
+      id: true,
+      title: true,
+      status: true,
+      deletedAt: true,
+    },
+  });
+}
+  async findOne(id: string) {
+  const property = await this.prisma.property.findUnique({
+    where: {
+      id,
+    },
+  });
+
+  if (!property || property.deletedAt !== null) {
+    throw new NotFoundException('Property not found');
+  }
+
+  return property;
+}
 
   async findAll() {
   return this.prisma.property.findMany({
+    where: {
+      deletedAt: null,
+    },
     orderBy: {
       createdAt: 'desc',
     },
   });
 }
-
 
 }

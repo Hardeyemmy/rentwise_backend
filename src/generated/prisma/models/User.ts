@@ -35,7 +35,6 @@ export type UserMinAggregateOutputType = {
   isVerified: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
-  deletedAt: Date | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -49,7 +48,6 @@ export type UserMaxAggregateOutputType = {
   isVerified: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
-  deletedAt: Date | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -63,7 +61,6 @@ export type UserCountAggregateOutputType = {
   isVerified: number
   createdAt: number
   updatedAt: number
-  deletedAt: number
   _all: number
 }
 
@@ -79,7 +76,6 @@ export type UserMinAggregateInputType = {
   isVerified?: true
   createdAt?: true
   updatedAt?: true
-  deletedAt?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -93,7 +89,6 @@ export type UserMaxAggregateInputType = {
   isVerified?: true
   createdAt?: true
   updatedAt?: true
-  deletedAt?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -107,7 +102,6 @@ export type UserCountAggregateInputType = {
   isVerified?: true
   createdAt?: true
   updatedAt?: true
-  deletedAt?: true
   _all?: true
 }
 
@@ -194,7 +188,6 @@ export type UserGroupByOutputType = {
   isVerified: boolean
   createdAt: Date
   updatedAt: Date
-  deletedAt: Date | null
   _count: UserCountAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
@@ -229,7 +222,6 @@ export type UserWhereInput = {
   isVerified?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   properties?: Prisma.PropertyListRelationFilter
   favorites?: Prisma.FavoriteListRelationFilter
   applications?: Prisma.RentalApplicationListRelationFilter
@@ -249,7 +241,6 @@ export type UserOrderByWithRelationInput = {
   isVerified?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   properties?: Prisma.PropertyOrderByRelationAggregateInput
   favorites?: Prisma.FavoriteOrderByRelationAggregateInput
   applications?: Prisma.RentalApplicationOrderByRelationAggregateInput
@@ -273,7 +264,6 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   isVerified?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   properties?: Prisma.PropertyListRelationFilter
   favorites?: Prisma.FavoriteListRelationFilter
   applications?: Prisma.RentalApplicationListRelationFilter
@@ -293,7 +283,6 @@ export type UserOrderByWithAggregationInput = {
   isVerified?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
@@ -313,7 +302,6 @@ export type UserScalarWhereWithAggregatesInput = {
   isVerified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
-  deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
 }
 
 export type UserCreateInput = {
@@ -327,7 +315,6 @@ export type UserCreateInput = {
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   properties?: Prisma.PropertyCreateNestedManyWithoutOwnerInput
   favorites?: Prisma.FavoriteCreateNestedManyWithoutUserInput
   applications?: Prisma.RentalApplicationCreateNestedManyWithoutUserInput
@@ -347,7 +334,6 @@ export type UserUncheckedCreateInput = {
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   properties?: Prisma.PropertyUncheckedCreateNestedManyWithoutOwnerInput
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutUserInput
   applications?: Prisma.RentalApplicationUncheckedCreateNestedManyWithoutUserInput
@@ -367,7 +353,6 @@ export type UserUpdateInput = {
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   properties?: Prisma.PropertyUpdateManyWithoutOwnerNestedInput
   favorites?: Prisma.FavoriteUpdateManyWithoutUserNestedInput
   applications?: Prisma.RentalApplicationUpdateManyWithoutUserNestedInput
@@ -387,7 +372,6 @@ export type UserUncheckedUpdateInput = {
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   properties?: Prisma.PropertyUncheckedUpdateManyWithoutOwnerNestedInput
   favorites?: Prisma.FavoriteUncheckedUpdateManyWithoutUserNestedInput
   applications?: Prisma.RentalApplicationUncheckedUpdateManyWithoutUserNestedInput
@@ -407,7 +391,6 @@ export type UserCreateManyInput = {
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
 }
 
 export type UserUpdateManyMutationInput = {
@@ -421,7 +404,6 @@ export type UserUpdateManyMutationInput = {
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -435,7 +417,6 @@ export type UserUncheckedUpdateManyInput = {
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type UserOrderByRelevanceInput = {
@@ -455,7 +436,6 @@ export type UserCountOrderByAggregateInput = {
   isVerified?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -469,7 +449,6 @@ export type UserMaxOrderByAggregateInput = {
   isVerified?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -483,7 +462,6 @@ export type UserMinOrderByAggregateInput = {
   isVerified?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrder
 }
 
 export type UserScalarRelationFilter = {
@@ -509,10 +487,6 @@ export type BoolFieldUpdateOperationsInput = {
 
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
-}
-
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
 }
 
 export type UserCreateNestedOneWithoutPropertiesInput = {
@@ -610,7 +584,6 @@ export type UserCreateWithoutPropertiesInput = {
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   favorites?: Prisma.FavoriteCreateNestedManyWithoutUserInput
   applications?: Prisma.RentalApplicationCreateNestedManyWithoutUserInput
   viewings?: Prisma.ViewingCreateNestedManyWithoutUserInput
@@ -629,7 +602,6 @@ export type UserUncheckedCreateWithoutPropertiesInput = {
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutUserInput
   applications?: Prisma.RentalApplicationUncheckedCreateNestedManyWithoutUserInput
   viewings?: Prisma.ViewingUncheckedCreateNestedManyWithoutUserInput
@@ -664,7 +636,6 @@ export type UserUpdateWithoutPropertiesInput = {
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   favorites?: Prisma.FavoriteUpdateManyWithoutUserNestedInput
   applications?: Prisma.RentalApplicationUpdateManyWithoutUserNestedInput
   viewings?: Prisma.ViewingUpdateManyWithoutUserNestedInput
@@ -683,7 +654,6 @@ export type UserUncheckedUpdateWithoutPropertiesInput = {
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   favorites?: Prisma.FavoriteUncheckedUpdateManyWithoutUserNestedInput
   applications?: Prisma.RentalApplicationUncheckedUpdateManyWithoutUserNestedInput
   viewings?: Prisma.ViewingUncheckedUpdateManyWithoutUserNestedInput
@@ -702,7 +672,6 @@ export type UserCreateWithoutFavoritesInput = {
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   properties?: Prisma.PropertyCreateNestedManyWithoutOwnerInput
   applications?: Prisma.RentalApplicationCreateNestedManyWithoutUserInput
   viewings?: Prisma.ViewingCreateNestedManyWithoutUserInput
@@ -721,7 +690,6 @@ export type UserUncheckedCreateWithoutFavoritesInput = {
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   properties?: Prisma.PropertyUncheckedCreateNestedManyWithoutOwnerInput
   applications?: Prisma.RentalApplicationUncheckedCreateNestedManyWithoutUserInput
   viewings?: Prisma.ViewingUncheckedCreateNestedManyWithoutUserInput
@@ -756,7 +724,6 @@ export type UserUpdateWithoutFavoritesInput = {
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   properties?: Prisma.PropertyUpdateManyWithoutOwnerNestedInput
   applications?: Prisma.RentalApplicationUpdateManyWithoutUserNestedInput
   viewings?: Prisma.ViewingUpdateManyWithoutUserNestedInput
@@ -775,7 +742,6 @@ export type UserUncheckedUpdateWithoutFavoritesInput = {
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   properties?: Prisma.PropertyUncheckedUpdateManyWithoutOwnerNestedInput
   applications?: Prisma.RentalApplicationUncheckedUpdateManyWithoutUserNestedInput
   viewings?: Prisma.ViewingUncheckedUpdateManyWithoutUserNestedInput
@@ -794,7 +760,6 @@ export type UserCreateWithoutApplicationsInput = {
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   properties?: Prisma.PropertyCreateNestedManyWithoutOwnerInput
   favorites?: Prisma.FavoriteCreateNestedManyWithoutUserInput
   viewings?: Prisma.ViewingCreateNestedManyWithoutUserInput
@@ -813,7 +778,6 @@ export type UserUncheckedCreateWithoutApplicationsInput = {
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   properties?: Prisma.PropertyUncheckedCreateNestedManyWithoutOwnerInput
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutUserInput
   viewings?: Prisma.ViewingUncheckedCreateNestedManyWithoutUserInput
@@ -848,7 +812,6 @@ export type UserUpdateWithoutApplicationsInput = {
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   properties?: Prisma.PropertyUpdateManyWithoutOwnerNestedInput
   favorites?: Prisma.FavoriteUpdateManyWithoutUserNestedInput
   viewings?: Prisma.ViewingUpdateManyWithoutUserNestedInput
@@ -867,7 +830,6 @@ export type UserUncheckedUpdateWithoutApplicationsInput = {
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   properties?: Prisma.PropertyUncheckedUpdateManyWithoutOwnerNestedInput
   favorites?: Prisma.FavoriteUncheckedUpdateManyWithoutUserNestedInput
   viewings?: Prisma.ViewingUncheckedUpdateManyWithoutUserNestedInput
@@ -886,7 +848,6 @@ export type UserCreateWithoutViewingsInput = {
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   properties?: Prisma.PropertyCreateNestedManyWithoutOwnerInput
   favorites?: Prisma.FavoriteCreateNestedManyWithoutUserInput
   applications?: Prisma.RentalApplicationCreateNestedManyWithoutUserInput
@@ -905,7 +866,6 @@ export type UserUncheckedCreateWithoutViewingsInput = {
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   properties?: Prisma.PropertyUncheckedCreateNestedManyWithoutOwnerInput
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutUserInput
   applications?: Prisma.RentalApplicationUncheckedCreateNestedManyWithoutUserInput
@@ -940,7 +900,6 @@ export type UserUpdateWithoutViewingsInput = {
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   properties?: Prisma.PropertyUpdateManyWithoutOwnerNestedInput
   favorites?: Prisma.FavoriteUpdateManyWithoutUserNestedInput
   applications?: Prisma.RentalApplicationUpdateManyWithoutUserNestedInput
@@ -959,7 +918,6 @@ export type UserUncheckedUpdateWithoutViewingsInput = {
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   properties?: Prisma.PropertyUncheckedUpdateManyWithoutOwnerNestedInput
   favorites?: Prisma.FavoriteUncheckedUpdateManyWithoutUserNestedInput
   applications?: Prisma.RentalApplicationUncheckedUpdateManyWithoutUserNestedInput
@@ -978,7 +936,6 @@ export type UserCreateWithoutPaymentsInput = {
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   properties?: Prisma.PropertyCreateNestedManyWithoutOwnerInput
   favorites?: Prisma.FavoriteCreateNestedManyWithoutUserInput
   applications?: Prisma.RentalApplicationCreateNestedManyWithoutUserInput
@@ -997,7 +954,6 @@ export type UserUncheckedCreateWithoutPaymentsInput = {
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   properties?: Prisma.PropertyUncheckedCreateNestedManyWithoutOwnerInput
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutUserInput
   applications?: Prisma.RentalApplicationUncheckedCreateNestedManyWithoutUserInput
@@ -1032,7 +988,6 @@ export type UserUpdateWithoutPaymentsInput = {
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   properties?: Prisma.PropertyUpdateManyWithoutOwnerNestedInput
   favorites?: Prisma.FavoriteUpdateManyWithoutUserNestedInput
   applications?: Prisma.RentalApplicationUpdateManyWithoutUserNestedInput
@@ -1051,7 +1006,6 @@ export type UserUncheckedUpdateWithoutPaymentsInput = {
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   properties?: Prisma.PropertyUncheckedUpdateManyWithoutOwnerNestedInput
   favorites?: Prisma.FavoriteUncheckedUpdateManyWithoutUserNestedInput
   applications?: Prisma.RentalApplicationUncheckedUpdateManyWithoutUserNestedInput
@@ -1070,7 +1024,6 @@ export type UserCreateWithoutNotificationsInput = {
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   properties?: Prisma.PropertyCreateNestedManyWithoutOwnerInput
   favorites?: Prisma.FavoriteCreateNestedManyWithoutUserInput
   applications?: Prisma.RentalApplicationCreateNestedManyWithoutUserInput
@@ -1089,7 +1042,6 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   isVerified?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
   properties?: Prisma.PropertyUncheckedCreateNestedManyWithoutOwnerInput
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutUserInput
   applications?: Prisma.RentalApplicationUncheckedCreateNestedManyWithoutUserInput
@@ -1124,7 +1076,6 @@ export type UserUpdateWithoutNotificationsInput = {
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   properties?: Prisma.PropertyUpdateManyWithoutOwnerNestedInput
   favorites?: Prisma.FavoriteUpdateManyWithoutUserNestedInput
   applications?: Prisma.RentalApplicationUpdateManyWithoutUserNestedInput
@@ -1143,7 +1094,6 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   properties?: Prisma.PropertyUncheckedUpdateManyWithoutOwnerNestedInput
   favorites?: Prisma.FavoriteUncheckedUpdateManyWithoutUserNestedInput
   applications?: Prisma.RentalApplicationUncheckedUpdateManyWithoutUserNestedInput
@@ -1238,7 +1188,6 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   isVerified?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  deletedAt?: boolean
   properties?: boolean | Prisma.User$propertiesArgs<ExtArgs>
   favorites?: boolean | Prisma.User$favoritesArgs<ExtArgs>
   applications?: boolean | Prisma.User$applicationsArgs<ExtArgs>
@@ -1261,10 +1210,9 @@ export type UserSelectScalar = {
   isVerified?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  deletedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "passwordHash" | "firstName" | "lastName" | "phone" | "role" | "isVerified" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "passwordHash" | "firstName" | "lastName" | "phone" | "role" | "isVerified" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   properties?: boolean | Prisma.User$propertiesArgs<ExtArgs>
   favorites?: boolean | Prisma.User$favoritesArgs<ExtArgs>
@@ -1296,7 +1244,6 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     isVerified: boolean
     createdAt: Date
     updatedAt: Date
-    deletedAt: Date | null
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -1682,7 +1629,6 @@ export interface UserFieldRefs {
   readonly isVerified: Prisma.FieldRef<"User", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
-  readonly deletedAt: Prisma.FieldRef<"User", 'DateTime'>
 }
     
 

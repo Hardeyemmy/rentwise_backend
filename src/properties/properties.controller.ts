@@ -3,6 +3,7 @@ import {
   Controller,
   Post,
   Patch,
+  Query,
   Get,
   Delete,
   Param,
@@ -10,13 +11,12 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-
 import { Roles } from '../auth/decorators/roles.decorator.js';
 import { RolesGuard } from '../auth/guard/roles.guard.js';
 import { UpdatePropertyDto } from './dto/update_property.dto.js';
 import { CreatePropertyDto } from './dto/create_properties.dto.js';
 import { PropertiesService } from './properties.service.js';
-
+import { PropertyQueryDto } from './dto/property_query.dto.js';
 @Controller('properties')
 export class PropertiesController {
   constructor(
@@ -37,8 +37,8 @@ export class PropertiesController {
   }
 
   @Get()
-findAll() {
-  return this.propertiesService.findAll();
+findAll(@Query() query: PropertyQueryDto) {
+  return this.propertiesService.findAll(query);
 }
 
 @Get(':id')

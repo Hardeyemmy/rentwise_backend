@@ -4,6 +4,8 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { Prisma } from '../generated/prisma/client.js';
+import { PropertyQueryDto } from './dto/property_query.dto.js';
 
 import { PrismaService } from '../database/prisma/prisma.service.js';
 import {
@@ -76,9 +78,9 @@ export class PropertiesService {
     },
   });
 
-  if (!property) {
-    throw new NotFoundException('Property not found');
-  }
+  if (!property || property.deletedAt !== null) {
+  throw new NotFoundException('Property not found');
+}
 
   if (property.ownerId !== userId) {
     throw new ForbiddenException(
@@ -211,15 +213,124 @@ async remove(id: string, userId: string) {
   return property;
 }
 
-  async findAll() {
-  return this.prisma.property.findMany({
-    where: {
-      deletedAt: null,
+  
+async findAll(query: PropertyQueryDto) {
+  const {
+    search,
+    city,
+    state,
+    location,
+    propertyType,
+    listingType,
+    minPrice,
+    maxPrice,
+    bedrooms,
+    page = 1,
+    limit = 10,
+    sortBy = 'newest',
+  } = query;
+
+  if (
+    minPrice !== undefined &&
+    maxPrice !== undefined &&
+    minPrice > maxPrice
+  ) {
+    throw new BadRequestException(
+      'minPrice cannot be greater than maxPrice',
+    );
+  }
+
+  const where: Prisma.PropertyWhereInput = {
+    deletedAt: null,
+  };
+
+  if (search?.trim()) {
+    const term = search.trim();
+
+    where.OR = [
+      { title: { contains: term } },
+      { description: { contains: term } },
+      { location: { contains: term } },
+      { city: { contains: term } },
+      { state: { contains: term } },
+    ];
+  }
+
+  if (city?.trim()) {
+    where.city = { contains: city.trim() };
+  }
+
+  if (state?.trim()) {
+    where.state = { contains: state.trim() };
+  }
+
+  if (location?.trim()) {
+    where.location = { contains: location.trim() };
+  }
+
+  if (propertyType) {
+    where.propertyType = propertyType;
+  }
+
+  if (listingType) {
+    where.listingType = listingType;
+  }
+
+  if (minPrice !== undefined || maxPrice !== undefined) {
+    where.price = {
+      ...(minPrice !== undefined && { gte: minPrice }),
+      ...(maxPrice !== undefined && { lte: maxPrice }),
+    };
+  }
+
+  if (bedrooms !== undefined) {
+    where.bedrooms = { gte: bedrooms };
+  }
+
+  let orderBy: Prisma.PropertyOrderByWithRelationInput[];
+
+  switch (sortBy) {
+    case 'price_asc':
+      orderBy = [{ price: 'asc' }, { createdAt: 'desc' }];
+      break;
+
+    case 'price_desc':
+      orderBy = [{ price: 'desc' }, { createdAt: 'desc' }];
+      break;
+
+    case 'featured':
+      orderBy = [
+        { isFeatured: 'desc' },
+        { createdAt: 'desc' },
+      ];
+      break;
+
+    default:
+      orderBy = [{ createdAt: 'desc' }];
+  }
+
+  const skip = (page - 1) * limit;
+
+  const [data, total] = await Promise.all([
+    this.prisma.property.findMany({
+      where,
+      orderBy,
+      skip,
+      take: limit,
+    }),
+
+    this.prisma.property.count({ where }),
+  ]);
+
+  return {
+    data,
+    meta: {
+      total,
+      page,
+      limit,
+      totalPages: Math.ceil(total / limit),
     },
-    orderBy: {
-      createdAt: 'desc',
-    },
-  });
+  };
 }
 
 }

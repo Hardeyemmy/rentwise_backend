@@ -84,4 +84,71 @@ export class ApplicationsService {
       },
     });
   }
+  
+  async findMyApplications(tenantId: string) {
+    return this.prisma.rentalApplication.findMany({
+      where: {
+        userId: tenantId,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+      include: {
+        property: {
+          select: {
+            id: true,
+            title: true,
+            city: true,
+            state: true,
+            price: true,
+            listingType: true,
+            status: true,
+          },
+        },
+      },
+    });
+  }
+
+  async withdraw(tenantId: string, applicationId: string) {
+    const application =
+      await this.prisma.rentalApplication.findFirst({
+        where: {
+          id: applicationId,
+          userId: tenantId,
+        },
+      });
+
+    if (!application) {
+      throw new NotFoundException('Application not found');
+    }
+
+    if (
+      !['PENDING', 'REVIEWING'].includes(application.status)
+    ) {
+      throw new ConflictException(
+        'Only pending or reviewing applications can be withdrawn',
+      );
+    }
+
+    return this.prisma.rentalApplication.update({
+      where: {
+        id: application.id,
+      },
+      data: {
+        status: 'WITHDRAWN',
+      },
+      include: {
+        property: {
+          select: {
+            id: true,
+            title: true,
+            city: true,
+            state: true,
+            price: true,
+          },
+        },
+      },
+    });
+  }
+
 }

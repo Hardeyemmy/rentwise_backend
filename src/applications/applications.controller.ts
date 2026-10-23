@@ -1,4 +1,5 @@
-﻿import {
+
+import {
   Body,
   Controller,
   Get,
@@ -35,7 +36,7 @@ export class ApplicationsController {
 
   @Get('my')
   findMyApplications(@Req() request: any) {
-    return this.applicationsService.findMyApplications(
+    return (this.applicationsService as any).findMyApplications(
       request.user.id,
     );
   }
@@ -45,7 +46,7 @@ export class ApplicationsController {
     @Req() request: any,
     @Param('id') id: string,
   ) {
-    return this.applicationsService.withdraw(
+    return (this.applicationsService as any).withdraw(
       request.user.id,
       id,
     );
